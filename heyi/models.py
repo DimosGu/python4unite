@@ -93,7 +93,7 @@ class product(models.Model):
     """docstring for product"""
     cat_id          = models.SmallIntegerField()
     product_name    = models.CharField(max_length=150)
-    price           = models.FloatField()
+    price           = models.DecimalField(max_digits=10, decimal_places=2)
     defined         = models.TextField()
     content         = models.TextField()
     product_image   = models.CharField(max_length=255)
