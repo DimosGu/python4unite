@@ -2,11 +2,37 @@ body {
     padding-top: 51px;
 }
 
+ul {
+    padding: 0;
+    list-style-type: none;
+}
+
+li {
+    font-size: 15px;
+    padding-bottom: 2px;
+}
+
 .navbar {
     margin-bottom: 0;
 }
 .recommend {
     padding-top: 15px;
+}
+
+.imgblock {
+    padding-bottom: 10px;
+}
+
+.about-me p {
+    font-size: 16px;
+    text-indent: 2em;
+}
+
+.hytitle {
+    border-left: 10px solid red;
+    border-bottom: 1px solid red;
+    padding-left:5px;
+    padding-bottom:2px;
 }
 
 footer {

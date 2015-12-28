@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>{{title}}</title>
+
+    <meta name="keywords" content="{{site_keywords}}" />
+    <meta name="description" content="{{site_description}}" />
+
+    <link rel="shortcut icon" href="/static/images/favicon.ico" type="image/x-icon" />
+
+    <!-- Bootstrap -->
+    <link href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <link href="/static/css/style.css" rel="stylesheet">
+</head>
+<body>
+    <div class="wrapper">
+        <!-- 顶部导航 -->
+        {% include 'nav.html' %}
+        <!-- 顶部导航 end -->
+
+        <div class="container about-me">
+            <h3 class="text-center">合一公司简介</h3>
+            <p>上善若水，众心合一。
+            云南合一体育用品有限公司是由一群充满激情与活力综合素质高的年轻人创办，是一家集体育用品生产、品牌代理和提供体育服务的综合性体育产业公司。
+            服务方向为：健身器材、学校器材、户外路径、体育场地场馆建设和赛事运营。
+            公司自创建以来，在“上善若水，众心合一”的思想指导下，稳步向前。至今，销售网络覆盖7省1市以及周边邻国。产品质量和公司信誉得到客户朋友和需求单位的一致认可。</p>
+            <p>公司先后通过ISO9001质量管理体系认证；OHS18001职业健康安全体系认证；ISO14001环境管理体系认证；
+            产品经国家体育用品质量监督检验中心（GB19272-2011标准）检验合格。在各级政府的关心下，占地30亩的体育产业基地正在积极建设中。</p>
+            <p>在全民健身提升为国家战略的历史时期，我们会把握机会，开拓进取，不断努力，为国家及地区的经济建设、为全民健身运动和我国教育事业尽微薄之力。</p>
+        </div>
+    </div>
+
+    {% include 'footer.html' %}
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</body>
+</html>

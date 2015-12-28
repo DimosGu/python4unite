@@ -31,6 +31,8 @@ class article(models.Model):
     add_time        = models.IntegerField()
     description     = models.CharField(max_length=255)
     home_sort       = models.CharField(max_length=2)
+    class Meta:
+        ordering = ['home_sort']
 
 class article_category(models.Model):
     """docstring for article_category"""
@@ -41,6 +43,8 @@ class article_category(models.Model):
     description = models.CharField(max_length=255)
     parent_id   = models.SmallIntegerField()
     sort        = models.SmallIntegerField()
+    class Meta:
+        ordering = ['sort']
 
 
 class config(models.Model):
@@ -51,6 +55,8 @@ class config(models.Model):
     box     = models.CharField(max_length=255)
     tab     = models.CharField(max_length=10)
     sort    = models.SmallIntegerField()
+    class Meta:
+        ordering = ['sort']
 
 class guestbook(models.Model):
     """docstring for guestbook"""
@@ -70,6 +76,8 @@ class link(models.Model):
     link_name   = models.CharField(max_length=60)
     link_url    = models.CharField(max_length=255)
     sort        = models.SmallIntegerField()
+    class Meta:
+        ordering = ['sort']
 
 class nav(models.Model):
     """docstring for nav"""
@@ -79,6 +87,8 @@ class nav(models.Model):
     parent_id   = models.SmallIntegerField()
     type        = models.CharField(max_length=10)
     sort        = models.SmallIntegerField()
+    class Meta:
+        ordering = ['sort']
 
 class page(models.Model):
     """docstring for page"""
@@ -101,6 +111,8 @@ class product(models.Model):
     add_time        = models.IntegerField()
     description     = models.CharField(max_length=255)
     home_sort       = models.CharField(max_length=2)
+    class Meta:
+        ordering = ['home_sort']
 
 class product_category(models.Model):
     """docstring for product_category"""
@@ -111,6 +123,8 @@ class product_category(models.Model):
     description = models.CharField(max_length=255)
     parent_id   = models.SmallIntegerField()
     sort        = models.SmallIntegerField()
+    class Meta:
+        ordering = ['sort']
 
 class show(models.Model):
     """docstring for show"""
@@ -119,3 +133,5 @@ class show(models.Model):
     show_img    = models.CharField(max_length=255)
     type        = models.CharField(max_length=10)
     sort        = models.SmallIntegerField()
+    class Meta:
+        ordering = ['sort']
