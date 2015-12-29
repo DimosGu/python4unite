@@ -31,12 +31,43 @@
         {% include 'nav.html' %}
         <!-- 顶部导航 end -->
 
-        <div class="container">
-
+        <div class="container page">
+            <div class="row">
+                <div class="col-xs-12 col-md-2 page-tree">
+                    <h3 class="page-nav-title">产品分类</h3>
+                    <ul>
+                        <li><a href="/products/lqyd/">篮球运动</a></li>
+                        <li><a href="/products/lqyd/">足球运动</a></li>
+                        <li><a href="/products/lqyd/">田径运动</a></li>
+                        <li><a href="/products/lqyd/">网球运动</a></li>
+                        <li><a href="/products/lqyd/">乒乓运动</a></li>
+                        <li><a href="/products/lqyd/">健身路径</a></li>
+                    </ul>
+                </div>
+                <div class="col-xs-12 col-md-10 page-container">
+                    <h3 class="page-nav-title">当前位置：</h3>
+                    <div class="page-content">
+                        {% for item in products %}
+                        <div class="col-xs-12 col-sm-12 col-md-6">
+                            <div class="row">
+                                <div class="col-xs-12 col-md-6">
+                                    <a href="#">
+                                        <img class="media-object img-responsive" src="{{item.product_image}}" alt="{{item.product_name}}" />
+                                    </a>
+                                </div>
+                                <div class="col-xs-12 col-md-6">
+                                    <h4><a href="#">{{item.product_name}}</a></h4>
+                                    <p>{{item.description}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
         </div>
+        {% include 'footer.html' %}
     </div>
-
-    {% include 'footer.html' %}
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>

@@ -2,6 +2,14 @@ body {
     padding-top: 51px;
 }
 
+a {
+    text-decoration: none;
+}
+a:hover {
+    color: #e4393c;
+    text-decoration: none;
+}
+
 ul {
     padding: 0;
     list-style-type: none;
@@ -14,6 +22,7 @@ li {
 
 .navbar {
     margin-bottom: 0;
+    border-bottom: 1px solid #e4393c;
 }
 .recommend {
     padding-top: 15px;
@@ -22,8 +31,42 @@ li {
 .imgblock {
     padding-bottom: 10px;
 }
+.hr {
+    margin-top: 5px;
+    margin-bottom: 20px;
+}
 
-.about-me p {
+/* page zone */
+.page {
+    margin-bottom: 15px;
+}
+.page .page-tree li{
+    line-height: 15px;
+    margin-top: 15px;
+    padding-left: 10px;
+    padding-bottom: 0;
+    border-left: 4px solid #f4f4f4;
+    font-size: 14px;
+}
+.page .page-tree li.cur{
+    border-left: 4px solid #e4393c;
+}
+.page h3.page-nav-title {
+    margin: 0;
+    padding: 2px 0;
+    height: 35px;
+    line-height: 35px;
+    color: #7A7F81;
+    font-size: 14px;
+    border-bottom: 1px solid #cbd1d3;
+}
+.page .page-tree > h3 {
+    font-weight: bold;
+}
+.page .page-content {
+    padding-top: 10px;
+}
+.page .page-content p {
     font-size: 16px;
     text-indent: 2em;
 }
@@ -33,6 +76,11 @@ li {
     border-bottom: 1px solid red;
     padding-left:5px;
     padding-bottom:2px;
+}
+
+#mapCanvas {
+    height: 600px;
+    margin-bottom: 20px;
 }
 
 footer {

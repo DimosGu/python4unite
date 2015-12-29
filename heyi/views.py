@@ -2,19 +2,11 @@
 from django.template.loader import get_template
 from django.template import Context
 from django.http import HttpResponse
-from models import config, show
+from models import config, show, page, product, product_category
+from common import info_dict, show_slide
 
 def index(request):
     tmp = get_template('index.html')
-    site_info = config.objects.all()
-    info_dict = {}
-    for info in site_info:
-        info_dict[info.name] = info.value
-
-    site_show = show.objects.all()
-    show_slide = []
-    for slide in site_show:
-        show_slide.append(slide.show_img)
 
     html = tmp.render(Context({
             'title': info_dict['site_title'],
@@ -33,10 +25,19 @@ def index(request):
 
 def products(request):
     tmp = get_template('products.html')
-    site_info = config.objects.all()
-    info_dict = {}
-    for info in site_info:
-        info_dict[info.name] = info.value
+
+    product_set = product.objects.all()
+    product_list = []
+    for single_product in product_set:
+        item = {}
+        item['product_name']    = single_product.product_name
+        item['price']           = 0.00
+        item['product_image']   = single_product.product_image
+        item['content']         = single_product.content
+        item['keywords']        = single_product.keywords
+        item['description']     = single_product.description
+        product_list.append(item)
+    pass
 
     html = tmp.render(Context({
             'title': info_dict['site_title'],
@@ -49,102 +50,16 @@ def products(request):
             'fax': info_dict['fax'],
             'qq': info_dict['qq'],
             'email': info_dict['email'],
-        }))
-    return HttpResponse(html)
-
-def about(request):
-    tmp = get_template('about.html')
-    site_info = config.objects.all()
-    info_dict = {}
-    for info in site_info:
-        info_dict[info.name] = info.value
-
-    html = tmp.render(Context({
-            'title': info_dict['site_title'],
-            'site_keywords': info_dict['site_keywords'],
-            'site_description': info_dict['site_description'],
-            'site_logo': info_dict['site_logo'],
-            'site_address': info_dict['site_address'],
-            'icp': info_dict['icp'],
-            'tel': info_dict['tel'],
-            'fax': info_dict['fax'],
-            'qq': info_dict['qq'],
-            'email': info_dict['email'],
-        }))
-    return HttpResponse(html)
-
-def realview(request):
-    tmp = get_template('realview.html')
-    site_info = config.objects.all()
-    info_dict = {}
-    for info in site_info:
-        info_dict[info.name] = info.value
-
-    html = tmp.render(Context({
-            'title': info_dict['site_title'],
-            'site_keywords': info_dict['site_keywords'],
-            'site_description': info_dict['site_description'],
-            'site_logo': info_dict['site_logo'],
-            'site_address': info_dict['site_address'],
-            'icp': info_dict['icp'],
-            'tel': info_dict['tel'],
-            'fax': info_dict['fax'],
-            'qq': info_dict['qq'],
-            'email': info_dict['email'],
-        }))
-    return HttpResponse(html)
-
-def wenhua(request):
-    tmp = get_template('wenhua.html')
-    site_info = config.objects.all()
-    info_dict = {}
-    for info in site_info:
-        info_dict[info.name] = info.value
-
-    html = tmp.render(Context({
-            'title': info_dict['site_title'],
-            'site_keywords': info_dict['site_keywords'],
-            'site_description': info_dict['site_description'],
-            'site_logo': info_dict['site_logo'],
-            'site_address': info_dict['site_address'],
-            'icp': info_dict['icp'],
-            'tel': info_dict['tel'],
-            'fax': info_dict['fax'],
-            'qq': info_dict['qq'],
-            'email': info_dict['email'],
-        }))
-    return HttpResponse(html)
-
-def honour(request):
-    tmp = get_template('honour.html')
-    site_info = config.objects.all()
-    info_dict = {}
-    for info in site_info:
-        info_dict[info.name] = info.value
-
-    html = tmp.render(Context({
-            'title': info_dict['site_title'],
-            'site_keywords': info_dict['site_keywords'],
-            'site_description': info_dict['site_description'],
-            'site_logo': info_dict['site_logo'],
-            'site_address': info_dict['site_address'],
-            'icp': info_dict['icp'],
-            'tel': info_dict['tel'],
-            'fax': info_dict['fax'],
-            'qq': info_dict['qq'],
-            'email': info_dict['email'],
+            'products':product_list,
         }))
     return HttpResponse(html)
 
 def contactus(request):
     tmp = get_template('contactus.html')
-    site_info = config.objects.all()
-    info_dict = {}
-    for info in site_info:
-        info_dict[info.name] = info.value
 
     html = tmp.render(Context({
-            'title': info_dict['site_title'],
+            'name': info_dict['site_name'],
+            'title': u'联系我们 | ' + info_dict['site_name'],
             'site_keywords': info_dict['site_keywords'],
             'site_description': info_dict['site_description'],
             'site_logo': info_dict['site_logo'],
@@ -157,17 +72,15 @@ def contactus(request):
         }))
     return HttpResponse(html)
 
-def you_are_wanted(request):
-    tmp = get_template('you-are-wanted.html')
-    site_info = config.objects.all()
-    info_dict = {}
-    for info in site_info:
-        info_dict[info.name] = info.value
+def show_pages(request, page_unique_name):
+    tmp = get_template('page.html')
+
+    content = page.objects.filter(unique_id=page_unique_name)[0]
 
     html = tmp.render(Context({
-            'title': info_dict['site_title'],
-            'site_keywords': info_dict['site_keywords'],
-            'site_description': info_dict['site_description'],
+            'title': content.page_name + ' | ' +info_dict['site_name'],
+            'site_keywords': content.keywords,
+            'site_description': content.description,
             'site_logo': info_dict['site_logo'],
             'site_address': info_dict['site_address'],
             'icp': info_dict['icp'],
@@ -175,5 +88,6 @@ def you_are_wanted(request):
             'fax': info_dict['fax'],
             'qq': info_dict['qq'],
             'email': info_dict['email'],
+            'page_content': content.content
         }))
     return HttpResponse(html)
