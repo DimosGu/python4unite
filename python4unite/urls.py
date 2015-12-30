@@ -1,7 +1,7 @@
 from django.conf.urls import patterns, include, url
 
 #from python4unite.views import index
-from heyi.views import index, products, contactus, show_pages
+from heyi.views import index, product_cate, contactus, show_pages
 
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
@@ -17,11 +17,10 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     # url(r'^admin/', include(admin.site.urls)),
-    #64326073
 
     url(r'^$', index),
     url(r'^index/$', index),
-    url(r'^products/$', products),
+    url(r'^products/$', product_cate),
     url(r'^contactus/$', contactus),
     url(r'^pages/(.+)/$', show_pages)
 )

@@ -20,6 +20,7 @@ li {
     padding-bottom: 2px;
 }
 
+/* rewrite bootstrap */
 .navbar {
     margin-bottom: 0;
     border-bottom: 1px solid #e4393c;
@@ -34,6 +35,16 @@ li {
 .hr {
     margin-top: 5px;
     margin-bottom: 20px;
+}
+.btn-primary {
+    color: #fff;
+    background: #e4393c;
+    border-color: #e4393c;
+}
+.btn-primary:hover {
+    color: #fff;
+    background: #e4393c;
+    border-color: #e4393c;
 }
 
 /* page zone */
@@ -76,6 +87,21 @@ li {
     border-bottom: 1px solid red;
     padding-left:5px;
     padding-bottom:2px;
+}
+
+
+/* 产品列表 */
+.page .page-product-list {
+    margin-top: 15px;
+}
+.page .product_list {
+    padding-bottom: 15px;
+}
+.page .product_list h4 {
+    font-weight: bold;
+}
+.page .product_list h4>a {
+    color: #000;
 }
 
 #mapCanvas {

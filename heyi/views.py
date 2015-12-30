@@ -2,6 +2,7 @@
 from django.template.loader import get_template
 from django.template import Context
 from django.http import HttpResponse
+from python4unite.settings import SITE_ROOT
 from models import config, show, page, product, product_category
 from common import info_dict, show_slide
 
@@ -23,8 +24,8 @@ def index(request):
         }))
     return HttpResponse(html)
 
-def products(request):
-    tmp = get_template('products.html')
+def product_cate(request):
+    tmp = get_template('product_cate.html')
 
     product_set = product.objects.all()
     product_list = []
@@ -69,6 +70,7 @@ def contactus(request):
             'fax': info_dict['fax'],
             'qq': info_dict['qq'],
             'email': info_dict['email'],
+            'site_root': SITE_ROOT,
         }))
     return HttpResponse(html)
 
