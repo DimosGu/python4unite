@@ -15,7 +15,10 @@ def get_slide_show():
     site_show = show.objects.all()
     show_slide = []
     for slide in site_show:
-        show_slide.append(slide.show_img)
+        #show_slide.append(slide.show_img)
+        show_slide.append({'slide_name':slide.show_name, 'slide_img':slide.show_img})
+        #show_slide[slide.show_name] = slide.show_img
+
     return show_slide
 
 '''获取导航菜单'''

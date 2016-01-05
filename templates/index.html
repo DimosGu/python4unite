@@ -23,7 +23,6 @@
     <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    <link href="/static/js/slippry/slippry/slippry.css" rel="stylesheet"/>
     <link href="/static/css/style.css" rel="stylesheet">
 </head>
 <body>
@@ -33,12 +32,55 @@
         <!-- 顶部导航 end -->
 
         <!-- slide show start -->
+        <!--
         <div class="">
             <ul id="slippry">
                 {% for img_url in slide %}
                     <li><a href="#"><img src="{{img_url}}" class="img-responsive center-block"></a></li>
                 {% endfor %}
             </ul>
+        </div>-->
+        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                {% for img_url in slide %}
+                    {% if forloop.first %}
+                    <li data-target="#carousel-example-generic" data-slide-to="{{forloop.counter0}}" class="active"></li>
+                    {% else %}
+                    <li data-target="#carousel-example-generic" data-slide-to="{{forloop.counter0}}"></li>
+                    {% endif %}
+                {% endfor %}
+                <!--
+                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+            -->
+            </ol>
+
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+                {% for slide_show in slide %}
+                    {% if forloop.first %}
+                <div class="item active">
+                    {% else %}
+                <div class="item">
+                    {% endif %}
+                    <img src="{{slide_show.slide_img}}" alt="">
+                    <div class="carousel-caption">
+                        <p>{{slide_show.slide_name}}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <!-- Controls -->
+            <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
         </div>
         <!-- slide show end -->
 
@@ -126,20 +168,10 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
-    <!-- slide show -->
-    <script src="static/js/slippry/slippry.min.js"></script>
     <script type="text/javascript">
-        $(function(){
-            var slide = $("#slippry").slippry({
-                transition: 'fade',
-                useCSS: true,
-                captions: false,
-                speed: 1000,
-                pause: 6000,
-                auto: true,
-                preload: 'visible'
-            });
-        });
+        $('.carousel').carousel({
+            interval: 6000
+        })
     </script>
     <!-- slide show -->
 </body>
