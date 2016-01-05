@@ -21,6 +21,7 @@ urlpatterns = patterns('',
     url(r'^$', index),
     url(r'^index/$', index),
     url(r'^products/$', product_cate),
+    url(r'^products/(.+)/$', product_cate),
     url(r'^contactus/$', contactus),
     url(r'^pages/(.+)/$', show_pages)
 )

@@ -4,7 +4,8 @@ from django.template import Context
 from django.http import HttpResponse
 from python4unite.settings import SITE_ROOT
 from models import config, show, page, product, product_category
-from common import info_dict, show_slide
+from common import info_dict, show_slide, get_child_id, get_cate_id
+import time
 
 def index(request):
     tmp = get_template('index.html')
@@ -24,21 +25,31 @@ def index(request):
         }))
     return HttpResponse(html)
 
-def product_cate(request):
+def product_cate(request, unique_name='all'):
     tmp = get_template('product_cate.html')
 
-    product_set = product.objects.all()
+    product_cate_set = product_category.objects.all()
+    if unique_name == 'all':
+        cate_id = 0
+    else:
+        cate_id = get_cate_id('hello', unique_name)
+    childs = get_child_id(product_cate_set, cate_id)
+
+    product_set = product.objects.filter(cat_id__in = childs)
     product_list = []
     for single_product in product_set:
         item = {}
+        item['id']              = single_product.id
+        item['cat_id']          = single_product.cat_id
         item['product_name']    = single_product.product_name
         item['price']           = 0.00
-        item['product_image']   = single_product.product_image
         item['content']         = single_product.content
-        item['keywords']        = single_product.keywords
+        item['product_image']   = single_product.product_image
+        dt = str(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(single_product.add_time)))
+        item['add_time']        = dt
         item['description']     = single_product.description
+        item['url']             = 'tt'
         product_list.append(item)
-    pass
 
     html = tmp.render(Context({
             'title': info_dict['site_title'],

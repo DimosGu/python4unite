@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-from models import config, show, nav
+from models import config, show, nav, page, product, product_category
 
 '''站点信息'''
 def get_site_info():
@@ -32,6 +32,21 @@ def get_nav(nav_type='middle', parent_id=0, current_module='', current_id='', cu
                 pass
 
     return nav
+
+'''获取子分类'''
+def get_child_id(data, parent_id=0):
+    childs = []
+    childs.append(parent_id)
+    for item in data:
+        if item.parent_id == parent_id:
+            childs.append(item.cat_id)
+            get_child_id(data, item.cat_id)
+    return childs
+
+'''获取分类ID'''
+def get_cate_id(module, unique_name):
+    item = product_category.objects.get(unique_id=unique_name)
+    return int(item.cat_id)
 
 # 获取站点信息
 info_dict = get_site_info()
