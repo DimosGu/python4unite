@@ -118,6 +118,27 @@ footer {
     border-top:4px solid #b70000;
 }
 
-footer .qrcode {
-    width:60%;
+footer img {
+    max-width:60%;
+}
+
+@media (max-width: 480px) {
+    .slide {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .slide-title {
+        display: none;
+    }
+    footer h3, footer li {
+        text-align: center;
+    }
+    footer img {
+        display: block;
+        margin-right: auto;
+        margin-left: auto;
+        height: auto;
+    }
 }
