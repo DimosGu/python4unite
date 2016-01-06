@@ -25,6 +25,9 @@ li {
     margin-bottom: 0;
     border-bottom: 1px solid #e4393c;
 }
+.navbar-brand {
+    padding: 0;    
+}
 .recommend {
     padding-top: 15px;
 }
@@ -102,6 +105,13 @@ li {
 }
 .page .product_list h4>a {
     color: #000;
+}
+.page .product_list h4>a:hover {
+    color: #e4393c;
+    text-decoration: none;
+}
+.product-item {
+    margin-bottom: 20px;
 }
 
 #mapCanvas {

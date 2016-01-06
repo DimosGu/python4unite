@@ -7,8 +7,8 @@
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
     <title>{{title}}</title>
 
-    <meta name="keywords" content="{{site_keywords}}" />
-    <meta name="description" content="{{site_description}}" />
+    <meta name="keywords" content="{{item.keywords}}" />
+    <meta name="description" content="{{item.description}}" />
 
     <link rel="shortcut icon" href="/static/images/favicon.ico" type="image/x-icon" />
 
@@ -47,21 +47,25 @@
                 <div class="col-xs-12 col-sm-10 col-md-10 page-container">
                     <h3 class="page-nav-title">当前位置：</h3>
                     <div class="row page-product-list">
-                        {% for item in products %}
-                        <div class="col-xs-12 col-sm-12 col-md-6 product_list">
+                        <div class="col-xs-12 col-sm-12 col-md-12 product-item">
                             <div class="row">
-                                <div class="col-xs-12 col-sm-12 col-md-6">
-                                    <a href="{{item.url}}">
-                                        <img class="media-object img-responsive" src="{{item.product_image}}" alt="{{item.product_name}}" />
-                                    </a>
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <img class="media-object img-responsive" src="{{item.product_image}}" alt="{{item.product_name}}" />
                                 </div>
-                                <div class="col-xs-12 col-sm-12 col-md-6">
+                                <div class="col-xs-12 col-sm-6 col-md-6">
                                     <h4><a href="{{item.url}}">{{item.product_name}}</a></h4>
-                                    <p>{{item.description}}</p>
+                                    <p>销售热线：{{tel}}</p>
+                                    <p>上架时间：{{item.add_time}}</p>
                                 </div>
                             </div>
                         </div>
-                        {% endfor %}
+                        <p>产品介绍</p>
+                        <hr class="hr">
+                        <div class="col-xs-12 col-sm-12 col-md-12 product-item">
+                            {% autoescape off %}
+                            {{item.content}}
+                            {% endautoescape %}
+                        </div>
                     </div>
                 </div>
             </div>

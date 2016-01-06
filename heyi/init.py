@@ -1,7 +1,10 @@
-#!/usr/bin/env Python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import os.path
-import urllib
+import common
 
-SITE_ROOT = os.path.join(os.path.abspath(os.path.dirname(os.path.dirname(__file__))))
+# 获取站点信息
+info_dict = common.get_site_info()
+# 获取幻灯片列表
+show_slide = common.get_slide_show()
+nav_list = common.get_nav()
