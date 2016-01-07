@@ -3,13 +3,15 @@ from django.template.loader import get_template
 from django.template import Context
 from django.http import HttpResponse
 from python4unite.settings import SITE_ROOT
-from models import config, show, page, product, product_category
-from common import get_child_id, get_cate_id, get_unique
+from models import config, show, page, product, product_category, nav
+from common import get_child_id, get_cate_id, get_unique, get_category, get_nav, get_page_list
 from init import *
 import time
 
 def index(request):
     tmp = get_template('index.html')
+
+    nav_list = get_nav('middle', 0, '')
 
     html = tmp.render(Context({
             'title': info_dict['site_title'],
@@ -38,6 +40,8 @@ def product_cate(request, unique_name='all'):
         cate_id = get_cate_id('product_category', unique_name)
     childs = get_child_id(product_cate_set, cate_id)
 
+    product_cate = get_category('product_category', 0, cate_id)
+
     product_set = product.objects.filter(cat_id__in = childs)
     product_list = []
     for single_product in product_set:
@@ -54,6 +58,8 @@ def product_cate(request, unique_name='all'):
         item['url']             = '/product/' + get_unique('product_category', item['cat_id']) + '/' + str(single_product.id) + '/'
         product_list.append(item)
 
+    nav_list = get_nav('middle', 0, 'product_category')
+
     html = tmp.render(Context({
             'title': info_dict['site_title'],
             'site_keywords': info_dict['site_keywords'],
@@ -67,12 +73,14 @@ def product_cate(request, unique_name='all'):
             'email': info_dict['email'],
             'products':product_list,
             'nav': nav_list,
+            'product_cate': product_cate,
         }))
     return HttpResponse(html)
 
 # 显示产品详情
 def product_display(request, cate_unique_name, product_id):
     tmp = get_template('product.html')
+    nav_list = get_nav('middle', 0, '')
 
     single_product= product.objects.get(id = product_id)
     item = {}
@@ -104,6 +112,7 @@ def product_display(request, cate_unique_name, product_id):
 
 def contactus(request):
     tmp = get_template('contactus.html')
+    nav_list = get_nav('middle', 0, 'contactus')
 
     html = tmp.render(Context({
             'name': info_dict['site_name'],
@@ -124,6 +133,11 @@ def contactus(request):
 
 def show_pages(request, page_unique_name):
     tmp = get_template('page.html')
+    # 页面ID
+    page_id = get_cate_id('page', page_unique_name)
+    nav_list = get_nav('middle', 0, 'page', page_id)
+
+    page_list = get_page_list(0, page_id)
 
     content = page.objects.filter(unique_id=page_unique_name)[0]
 
@@ -140,6 +154,7 @@ def show_pages(request, page_unique_name):
             'email': info_dict['email'],
             'page_content': content.content,
             'nav': nav_list,
+            'page_list': page_list,
         }))
     return HttpResponse(html)
 

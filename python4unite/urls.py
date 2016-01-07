@@ -20,7 +20,7 @@ urlpatterns = patterns('',
     url(r'^$', index),
     url(r'^index/$', index),
     url(r'^product_category/$', product_cate),
-    url(r'^products_category/(.+)/$', product_cate),
+    url(r'^product_category/(.+)/$', product_cate),
     url(r'^product/(.+)/(.+)/$', product_display),
     url(r'^contactus/$', contactus),
     url(r'^pages/(.+)/$', show_pages)

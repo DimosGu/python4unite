@@ -98,6 +98,9 @@ class page(models.Model):
     content     = models.TextField()
     keywords    = models.CharField(max_length=255)
     description = models.CharField(max_length=255)
+    sort        = models.SmallIntegerField()
+    class Meta:
+        ordering = ['sort']
 
 class product(models.Model):
     """docstring for product"""

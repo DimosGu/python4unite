@@ -1,0 +1,10 @@
+<h3 class="page-nav-title">产品分类</h3>
+<ul>
+    {% for cate in product_cate %}
+        {% if cate.cur %}
+        <li class="cur"><a href="{{cate.url}}">{{cate.cat_name}}</a></li>
+        {% else %}
+        <li><a href="{{cate.url}}">{{cate.cat_name}}</a></li>
+        {% endif %}
+    {% endfor %}
+</ul>

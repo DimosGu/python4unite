@@ -1,0 +1,10 @@
+<h3 class="page-nav-title">企业介绍</h3>
+<ul>
+    {% for page in page_list %}
+        {% if page.cur %}
+        <li class="cur"><a href="{{page.url}}">{{page.page_name}}</a></li>
+        {% else %}
+        <li><a href="{{page.url}}">{{page.page_name}}</a></li>
+        {% endif %}
+    {% endfor %}
+</ul>

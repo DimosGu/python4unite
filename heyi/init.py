@@ -7,4 +7,5 @@ import common
 info_dict = common.get_site_info()
 # 获取幻灯片列表
 show_slide = common.get_slide_show()
-nav_list = common.get_nav()
+# 获取导航菜单
+#nav_list = common.get_nav()
