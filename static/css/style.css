@@ -25,8 +25,22 @@ li {
     margin-bottom: 0;
     border-bottom: 1px solid #e4393c;
 }
+.navbar li {
+    font-size: 15px;
+    padding-bottom: 0;
+}
+.navbar-default .navbar-nav>.active>a {
+    padding: 12px 15px;
+    border-bottom: 6px solid #e4393c;
+    background-color: #f8f8f8;
+}
+.navbar-default .navbar-nav>li>a:hover {
+    padding: 12px 15px;
+    border-bottom: 6px solid #e7e7e7;
+    background-color: #f8f8f8;
+}
 .navbar-brand {
-    padding: 0;    
+    padding: 0;
 }
 .recommend {
     padding-top: 15px;
@@ -50,6 +64,26 @@ li {
     border-color: #e4393c;
 }
 
+.breadcrumb {
+    background: #fff;
+    padding: 0;
+    margin: 0;
+    border-bottom: 1px solid #cbd1d3;
+    border-radius: 0;
+}
+
+.ur_here {
+    color: #888;
+    line-height: 33px;
+}
+.ur_here a {
+    color: #999;
+}
+.ur_here a:hover {
+    color: #e4393c;
+    text-decoration: none;
+}
+
 /* page zone */
 .page {
     margin-bottom: 15px;
@@ -64,6 +98,15 @@ li {
 }
 .page .page-tree li.cur{
     border-left: 4px solid #e4393c;
+}
+.page .page-tree li.cur a{
+    color: #e4393c;
+}
+.page .page-tree li a {
+    color: #7a7f81;
+}
+.page .page-tree li a:hover {
+    color: #e4393c;
 }
 .page h3.page-nav-title {
     margin: 0;

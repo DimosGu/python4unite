@@ -37,7 +37,7 @@
                     {% include 'inc/page_tree.html' %}
                 </div>
                 <div class="col-xs-12 col-md-10 page-container">
-                    <h3 class="page-nav-title">当前位置：</h3>
+                    {% include 'inc/ur_here.html' %}
                     <div class="page-content">
                         {% autoescape off %}
                         {{page_content}}

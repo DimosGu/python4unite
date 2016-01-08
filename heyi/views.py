@@ -4,7 +4,7 @@ from django.template import Context
 from django.http import HttpResponse
 from python4unite.settings import SITE_ROOT
 from models import config, show, page, product, product_category, nav
-from common import get_child_id, get_cate_id, get_unique, get_category, get_nav, get_page_list
+from common import get_child_id, get_cate_id, get_unique, get_category, get_nav, get_page_list, ur_here
 from init import *
 import time
 
@@ -42,6 +42,8 @@ def product_cate(request, unique_name='all'):
 
     product_cate = get_category('product_category', 0, cate_id)
 
+    urhere = ur_here('product_category', cate_id)
+
     product_set = product.objects.filter(cat_id__in = childs)
     product_list = []
     for single_product in product_set:
@@ -74,6 +76,7 @@ def product_cate(request, unique_name='all'):
             'products':product_list,
             'nav': nav_list,
             'product_cate': product_cate,
+            'ur_here': urhere,
         }))
     return HttpResponse(html)
 
@@ -96,6 +99,8 @@ def product_display(request, cate_unique_name, product_id):
     item['description']     = single_product.description
     item['url']             = get_unique('product_category', item['cat_id']) + '/' + str(single_product.id) + '/'
 
+    urhere = ur_here('product_category', int(item['cat_id']), item['product_name'])
+
     html = tmp.render(Context({
             'title': item['product_name'] + ' | ' + info_dict['site_name'],
             'site_logo': info_dict['site_logo'],
@@ -107,6 +112,7 @@ def product_display(request, cate_unique_name, product_id):
             'email': info_dict['email'],
             'item':item,
             'nav': nav_list,
+            'ur_here': urhere,
         }))
     return HttpResponse(html)
 
@@ -141,6 +147,8 @@ def show_pages(request, page_unique_name):
 
     content = page.objects.filter(unique_id=page_unique_name)[0]
 
+    urhere = ur_here('page', int(page_id))
+
     html = tmp.render(Context({
             'title': content.page_name + ' | ' +info_dict['site_name'],
             'site_keywords': content.keywords,
@@ -155,6 +163,7 @@ def show_pages(request, page_unique_name):
             'page_content': content.content,
             'nav': nav_list,
             'page_list': page_list,
+            'ur_here': urhere,
         }))
     return HttpResponse(html)
 

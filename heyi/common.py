@@ -116,11 +116,40 @@ def get_unique(module, id):
     return str(item.unique_id) if item is not None else ''
 
 '''当前位置'''
-def ur_here(module, cat_id=0, title=''):
+def ur_here(module, by_id=0, title=''):
     if module == 'onepage':
         title = '<li class="active">' + title + '</li>'
         return title
-    main = '<li><a href="' + rewrite_url(module) + '>' + module + '</a></li>'
+
+    main = ''
+
+    category = ''
+    if module == 'product_category':
+        main = '<li>' + u'当前位置：' + '<a href="' + rewrite_url(module) + '">' + u'产品中心' + '</a></li>'
+        if by_id:
+            cat_name = product_category.objects.get(cat_id=by_id).cat_name
+            if title:
+                category = '<li><a href="' + rewrite_url(module, by_id) + '">' + cat_name + '</a></li>'
+            else:
+                category = '<li class="active">' + cat_name + '</li>'
+    elif module == 'product':
+        if by_id:
+            item = product.objects.get(id=by_id)
+            cat_item = product_category.objects.get(cat_id=item.cat_id)
+            if title:
+                category = '<li><a href="' + rewrite_url(module, cat_item.cat_id) + '">' + cat_item.cat_name + '</a></li>'
+            else:
+                category = '<li class="active">' + product_name + '</li>'
+    elif module == 'page':
+        main = ''
+        if by_id:
+            page_name = page.objects.get(id=by_id).page_name
+            category = '<li class="active">' + u'当前位置：' + page_name + '</li>'
+
+    if title:
+        title = '<li class="active">' + title + '</li>'
+    ur_here = main + category + title
+    return ur_here
 
 '''获取分类'''
 def get_category(model_name, parent_id=0, current_id=0):
