@@ -185,3 +185,7 @@ def get_page_list(parent_id=0, current_id=0):
             item['cur'] = True if value.id == current_id else False
             page_list.append(item)
     return page_list
+
+'''分页'''
+def pager(model, page_size=10, page=0, cat_id=0, key='', keyword=''):
+    pass

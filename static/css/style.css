@@ -30,12 +30,13 @@ li {
     padding-bottom: 0;
 }
 .navbar-default .navbar-nav>.active>a {
-    padding: 12px 15px;
+    padding: 15px 15px 9px 15px;
     border-bottom: 6px solid #e4393c;
     background-color: #f8f8f8;
 }
+.navbar-default .navbar-nav>.active>a:hover,
 .navbar-default .navbar-nav>li>a:hover {
-    padding: 12px 15px;
+    padding: 15px 15px 9px 15px;
     border-bottom: 6px solid #e7e7e7;
     background-color: #f8f8f8;
 }
