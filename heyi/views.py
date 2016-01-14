@@ -2,6 +2,7 @@
 from django.template.loader import get_template
 from django.template import Context
 from django.http import HttpResponse
+from django.db import connection
 from python4unite.settings import SITE_ROOT
 from models import config, show, page, product, product_category, nav
 from common import get_child_id, get_cate_id, get_unique, get_category, get_nav, get_page_list, ur_here
@@ -44,20 +45,26 @@ def product_cate(request, unique_name='all'):
 
     urhere = ur_here('product_category', cate_id)
 
-    product_set = product.objects.filter(cat_id__in = childs)
+    cur = connection.cursor()
+    child_str = ''
+    for childid in childs:
+        child_str += str(childid) + ','
+    #product_set = product.objects.filter(cat_id__in = childs)
+    r = cur.callproc('proc_product_list', [child_str,1,10])
+    product_set = cur.fetchall()
+    cur.close()
     product_list = []
     for single_product in product_set:
         item = {}
-        item['id']              = single_product.id
-        item['cat_id']          = single_product.cat_id
-        item['product_name']    = single_product.product_name
-        item['price']           = 0.00
-        item['content']         = single_product.content
-        item['product_image']   = single_product.product_image
-        dt = str(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(single_product.add_time)))
+        item['id']              = single_product[0]
+        item['cat_id']          = single_product[1]
+        item['product_name']    = single_product[2]
+        item['content']         = single_product[4]
+        item['product_image']   = single_product[3]
+        dt = str(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(single_product[7])))
         item['add_time']        = dt
-        item['description']     = single_product.description
-        item['url']             = '/product/' + get_unique('product_category', item['cat_id']) + '/' + str(single_product.id) + '/'
+        item['description']     = single_product[6]
+        item['url']             = '/product/' + get_unique('product_category', item['cat_id']) + '/' + str(item['id']) + '/'
         product_list.append(item)
 
     nav_list = get_nav('middle', 0, 'product_category')
