@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from models import config, show, nav, page, product, product_category
+import math
 
 def rewrite_url(module, value=0):
     '''
@@ -187,5 +188,26 @@ def get_page_list(parent_id=0, current_id=0):
     return page_list
 
 '''分页'''
-def pager(model, page_size=10, page=0, cat_id=0, key='', keyword=''):
-    pass
+def pager(model, page_size=10, page=0, cat_ids=0, unique_name='', key='', keyword=''):
+    record_count = product.objects.filter(cat_id__in=cat_ids).count()
+
+    page_size = int(page_size)
+    page_count = int(math.ceil(record_count * 1.0 / page_size))
+    page_list = []
+    if unique_name == '':
+        pre_str = ''
+    else:
+        pre_str = unique_name + '/'
+    for i in range(1, page_count + 1):
+        item = {}
+        item['index'] = i
+        if int(page) == i:
+            item['cur'] = True
+        else:
+            item['cur'] = False
+        item['pre'] = i - 1 if i>1 else 1
+        item['next'] = i + 1 if i<page_count else i
+        item['pre_url'] = pre_str
+        page_list.append(item)
+
+    return page_list

@@ -1,0 +1,31 @@
+<nav class="text-center">
+    <ul class="pagination">
+        {% for page in page_list %}
+            {% if page.cur %}
+            <li>
+                <a href="/product_category/{{page.pre_url}}{{page.pre}}/" aria-label="Previous">
+                    <span aria-hidden="true">上一页</span>
+                </a>
+            </li>
+            {% endif %}
+        {% endfor %}
+
+        {% for page in page_list %}
+            {% if page.cur %}
+                <li class="active"><a href="/product_category/{{page.pre_url}}{{page.index}}/">{{page.index}}</a></li>
+            {% else %}
+                <li><a href="/product_category/{{page.pre_url}}{{page.index}}/">{{page.index}}</a></li>
+            {% endif %}
+        {% endfor %}
+
+        {% for page in page_list %}
+            {% if page.cur %}
+            <li>
+                <a href="/product_category/{{page.pre_url}}{{page.next}}/" aria-label="Next">
+                    <span aria-hidden="true">下一页</span>
+                </a>
+            </li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+</nav>

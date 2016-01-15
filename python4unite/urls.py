@@ -1,7 +1,7 @@
 from django.conf.urls import patterns, include, url
 from django.conf import settings
 
-from heyi.views import index, product_cate, contactus, show_pages, product_display
+from heyi import views
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
 # admin.autodiscover()
@@ -17,13 +17,15 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
     # url(r'^admin/', include(admin.site.urls)),
 
-    url(r'^$', index),
-    url(r'^index/$', index),
-    url(r'^product_category/$', product_cate),
-    url(r'^product_category/(.+)/$', product_cate),
-    url(r'^product/(.+)/(.+)/$', product_display),
-    url(r'^contactus/$', contactus),
-    url(r'^pages/(.+)/$', show_pages)
+    url(r'^$', views.index),
+    url(r'^index/$', views.index),
+    url(r'^product_category/$', views.product_list_all),
+    url(r'^product_category/(\d+)/$', views.product_list_all),
+    url(r'^product_category/(\D+)/$', views.product_list_cate),
+    url(r'^product_category/(\D+)/(\d+)/$', views.product_list_cate),
+    url(r'^product/(\D+)/(\d+)/$', views.product_display),
+    url(r'^contactus/$', views.contactus),
+    url(r'^pages/(.+)/$', views.show_pages)
 )
 
 #handler404 = 'heyi.views.page_not_found'

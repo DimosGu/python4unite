@@ -34,15 +34,7 @@
         <div class="container page">
             <div class="row">
                 <div class="col-xs-12 col-sm-2 col-md-2 page-tree">
-                    <h3 class="page-nav-title">产品分类</h3>
-                    <ul>
-                        <li><a href="/product_category/lqyd/">篮球运动</a></li>
-                        <li><a href="/product_category/lqyd/">足球运动</a></li>
-                        <li><a href="/product_category/lqyd/">田径运动</a></li>
-                        <li><a href="/product_category/lqyd/">网球运动</a></li>
-                        <li><a href="/product_category/lqyd/">乒乓运动</a></li>
-                        <li><a href="/product_category/lqyd/">健身路径</a></li>
-                    </ul>
+                    {% include 'inc/product_tree.html' %}
                 </div>
                 <div class="col-xs-12 col-sm-10 col-md-10 page-container">
                     {% include 'inc/ur_here.html' %}
